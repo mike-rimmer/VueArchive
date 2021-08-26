@@ -95,6 +95,5 @@
 
 <script setup>
 import { ref } from "vue";
-
 const msg = ref("This is the Sample Module");
 </script>

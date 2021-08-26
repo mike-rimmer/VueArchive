@@ -1,61 +1,146 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/sample">Sample</router-link> |
-
-    <TabMenu :model="items"></TabMenu>
+  <div>
+    <Menubar :model="items" />
   </div>
   <router-view />
 </template>
 
 <script>
-import TabMenu from "primevue/tabmenu";
+import { ref } from "vue";
+import Menubar from "primevue/menubar";
 export default {
-  components: {
-    TabMenu,
-  },
-  data() {
-    return {
-      items: [
-        { label: "Home", icon: "pi pi-fw pi-home", to: "/tabmenu" },
-        {
-          label: "Calendar",
-          icon: "pi pi-fw pi-calendar",
-          to: "/tabmenu/calendar",
-        },
-        { label: "Edit", icon: "pi pi-fw pi-pencil", to: "/tabmenu/edit" },
-        {
-          label: "Documentation",
-          icon: "pi pi-fw pi-file",
-          to: "/tabmenu/documentation",
-        },
-        { label: "Settings", icon: "pi pi-fw pi-cog", to: "/tabmenu/settings" },
-      ],
-    };
+  components: { Menubar },
+
+  setup() {
+    const items = ref([
+      {
+        label: "COLLECTIONS",
+        icon: "pi pi-fw pi-file",
+        items: [
+          {
+            label: "New",
+            icon: "pi pi-fw pi-plus",
+            items: [
+              {
+                label: "Bookmark",
+                icon: "pi pi-fw pi-bookmark",
+              },
+              {
+                label: "Video",
+                icon: "pi pi-fw pi-video",
+              },
+            ],
+          },
+          {
+            label: "GROWTH",
+            icon: "pi pi-fw pi-trash",
+          },
+          {
+            separator: true,
+          },
+          {
+            label: "Export",
+            icon: "pi pi-fw pi-external-link",
+          },
+        ],
+        to: "/collections",
+      },
+      {
+        label: "SHIPLIST",
+        icon: "pi pi-fw pi-pencil",
+        items: [
+          {
+            label: "Left",
+            icon: "pi pi-fw pi-align-left",
+          },
+          {
+            label: "Right",
+            icon: "pi pi-fw pi-align-right",
+          },
+          {
+            label: "Center",
+            icon: "pi pi-fw pi-align-center",
+          },
+          {
+            label: "Justify",
+            icon: "pi pi-fw pi-align-justify",
+          },
+        ],
+        to: "/shiplist",
+      },
+      {
+        label: "LIBRARY",
+        icon: "pi pi-fw pi-user",
+        items: [
+          {
+            label: "New",
+            icon: "pi pi-fw pi-user-plus",
+          },
+          {
+            label: "Delete",
+            icon: "pi pi-fw pi-user-minus",
+          },
+          {
+            label: "Search",
+            icon: "pi pi-fw pi-users",
+            items: [
+              {
+                label: "Filter",
+                icon: "pi pi-fw pi-filter",
+                items: [
+                  {
+                    label: "Print",
+                    icon: "pi pi-fw pi-print",
+                  },
+                ],
+              },
+              {
+                icon: "pi pi-fw pi-bars",
+                label: "List",
+              },
+            ],
+          },
+        ],
+        to: "/library",
+      },
+      {
+        label: "ABOUT",
+        icon: "pi pi-fw pi-calendar",
+        items: [
+          {
+            label: "Edit",
+            icon: "pi pi-fw pi-pencil",
+            items: [
+              {
+                label: "Save",
+                icon: "pi pi-fw pi-calendar-plus",
+              },
+              {
+                label: "Delete",
+                icon: "pi pi-fw pi-calendar-minus",
+              },
+            ],
+          },
+          {
+            label: "Archive",
+            icon: "pi pi-fw pi-calendar-times",
+            items: [
+              {
+                label: "Remove",
+                icon: "pi pi-fw pi-calendar-minus",
+              },
+            ],
+          },
+        ],
+        to: "/about",
+      },
+      {
+        label: "MUSEUM",
+        icon: "pi pi-fw pi-power-off",
+      },
+    ]);
+
+    return { items };
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
