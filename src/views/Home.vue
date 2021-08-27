@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home Page</h1>
+    <h1>Home Page in Laptop Version</h1>
   </div>
 </template>
 
