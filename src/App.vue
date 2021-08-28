@@ -1,17 +1,39 @@
 <template>
   <div>
-    <Menubar :model="items" />
+    <Menubar :model="items">
+      <template #start>
+         Place Logo Here       
+      </template>
+      <template #end>
+          
+      </template>
+    </Menubar>
   </div>
+    <!-- <useDark v-slot="{isDark, toggleDark}">
+         <button @click="toggleDark()">
+           Is Dark:{{isDark}}
+          </button>
+    </useDark>   -->
   <router-view />
 </template>
 
 <script>
 import { ref } from "vue";
+// import{useDark, useToggle } from '@vueuse/core'
 import Menubar from "primevue/menubar";
 export default {
   components: { Menubar },
 
   setup() {
+    // const isDark = useDark({
+    //   selector:'body',
+    //   attribute:'color_scheme',
+    //   valueDark :'dark',
+    //   valueLight:'light'
+    // })
+
+    // const toggleDark = useToggle(isDark)
+    
     const items = ref([
       {
         label: "COLLECTIONS",
@@ -140,7 +162,12 @@ export default {
       },
     ]);
 
+    
     return { items };
   },
 };
 </script>
+
+<style>
+
+</style>
